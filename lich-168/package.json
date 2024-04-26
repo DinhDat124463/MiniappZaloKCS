@@ -1,0 +1,20 @@
+{
+  "name": "lịch-168",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Lịch 168",
+  "repository" : "",
+  "license" : "UNLICENSED",
+  "browserslist": [
+    "Android >= 5",
+    "IOS >= 9.3",
+    "Edge >= 15",
+    "Safari >= 9.1",
+    "Chrome >= 49",
+    "Firefox >= 31",
+    "Samsung >= 5"
+  ],
+  "scripts" : {"start":"zmp start","deploy":"zmp deploy","build:css":"postcss src/css/tailwind.css -o src/css/styles.css"},
+  "dependencies": {},
+  "devDependencies": {}
+}
