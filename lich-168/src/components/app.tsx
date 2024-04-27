@@ -7,6 +7,7 @@ import About from '../pages/about';
 import Form from '../pages/form';
 import User from '../pages/user';
 import BottomNavigationPage from "../pages/navigation"
+import Calendar from "../pages/calendar"
 const MyApp = () => {
   return (
     <RecoilRoot>
@@ -14,7 +15,7 @@ const MyApp = () => {
         <SnackbarProvider>
           <ZMPRouter>
             <AnimationRoutes>
-              <Route path="/" element={<HomePage></HomePage>}></Route>
+              <Route path="/" element={<Calendar></Calendar>}></Route>
               <Route path="/about" element={<About></About>}></Route>
               <Route path="/form" element={<Form></Form>}></Route>
               <Route path="/user" element={<User></User>}></Route>

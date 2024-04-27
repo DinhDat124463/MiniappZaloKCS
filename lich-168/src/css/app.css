@@ -12,3 +12,10 @@
 .zaui-list-item {
   cursor: pointer;
 }
+.grid_Calendar {
+  padding: 20px;
+  border-radius: 10px;
+  display: grid;
+  justify-items: center; /* Căn giữa các phần tử trong mỗi ô */
+  border: 2px solid #ccc;
+}

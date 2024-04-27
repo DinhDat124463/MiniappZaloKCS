@@ -5,7 +5,7 @@ import { userState } from "../state";
 
 import UserCard from "../components/user-card";
 
-const HomePage: React.FunctionComponent = () => {
+const calendar: React.FunctionComponent = () => {
   const user = useRecoilValue(userState);
   const navigate = useNavigate();
   return (
@@ -33,4 +33,4 @@ const HomePage: React.FunctionComponent = () => {
   );
 };
 
-export default HomePage;
+export default calendar;
