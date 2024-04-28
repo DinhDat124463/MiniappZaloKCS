@@ -6,7 +6,8 @@ import { RecoilRoot } from 'recoil';
 import User from '../pages/user';
 import BottomNavigationPage from "../pages/navigation"
 import Calendar from "../pages/calendar_month"
-import detail_month from "../pages/detail_month"
+
+import Schedule from "../pages/add_Schedule";
 const MyApp = () => {
   return (
     <RecoilRoot>
@@ -16,6 +17,7 @@ const MyApp = () => {
             <AnimationRoutes>
               <Route path="/" element={<Calendar></Calendar>}></Route>
               <Route path="/user" element={<User></User>}></Route>
+              <Route path="/Schedule" element={<Schedule></Schedule>}></Route>
             </AnimationRoutes>
             <BottomNavigationPage />
           </ZMPRouter>

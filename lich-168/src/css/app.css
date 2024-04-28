@@ -19,3 +19,23 @@
   justify-items: center; /* Căn giữa các phần tử trong mỗi ô */
   border: 2px solid #ccc;
 }
+.button_add_Schedule {
+  bottom: px; /* Khoảng cách từ dưới lên */
+  left: 16px; /* Khoảng cách từ trái sang */
+  padding: 16px; /* Khoảng cách trong nút */
+  background-color: #388e3c;
+  border-radius: 50%; /* Tạo hình tròn */
+  display: flex; /* Hiển thị thành phần theo chiều ngang */
+  align-items: center; /* Căn chỉnh nội dung theo chiều dọc */
+  justify-content: center; /* Căn chỉnh nội dung theo chiều ngang */
+}
+.setup_Schedule {
+  width: "45%";
+  margin-bottom: "1rem";
+  border: 2px solid #ccc;
+}
+.grid_detail {
+  display: flex;
+  border: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+}

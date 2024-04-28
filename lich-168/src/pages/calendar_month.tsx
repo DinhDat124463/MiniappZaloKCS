@@ -1,15 +1,33 @@
-import React, { useState } from "react";
-import { Page, Grid, Center, Icon } from "zmp-ui";
+import React, { useState, useEffect } from "react";
+import { Page, Grid, Center, Icon, Stack } from "zmp-ui";
+
+import DetailMonth from "./detail_month"
+import { Link } from "react-router-dom";
 
 const Calendar: React.FC = () => {
   const [currentWeek, setCurrentWeek] = useState<number>(1);
+  const [showSchedule, setShowSchedule] = useState<boolean>(false);
+
+  useEffect(() => {
+    // Lấy giá trị tuần từ local storage nếu có
+    const savedWeek = localStorage.getItem("lastUsedWeek");
+    if (savedWeek) {
+      setCurrentWeek(parseInt(savedWeek));
+    }
+  }, []);
 
   const decreaseWeek = () => {
-    setCurrentWeek(prevWeek => (prevWeek === 1 ? 52 : prevWeek - 1));
+    const newWeek = currentWeek === 1 ? 52 : currentWeek - 1;
+    setCurrentWeek(newWeek);
+    // Lưu giá trị tuần vào local storage
+    localStorage.setItem("lastUsedWeek", newWeek.toString());
   };
 
   const increaseWeek = () => {
-    setCurrentWeek(prevWeek => (prevWeek === 52 ? 1 : prevWeek + 1));
+    const newWeek = currentWeek === 52 ? 1 : currentWeek + 1;
+    setCurrentWeek(newWeek);
+    // Lưu giá trị tuần vào local storage
+    localStorage.setItem("lastUsedWeek", newWeek.toString());
   };
 
   const getCurrentWeekDates = () => {
@@ -22,12 +40,8 @@ const Calendar: React.FC = () => {
     return `${startDateString} - ${endDateString}`;
   };
 
-  const renderCalendar = () => {
-    const daysOfWeek = ['Thứ 2', 'Thứ 3', 'Thứ 4', 'Thứ 5', 'Thứ 6', 'Thứ 7', 'CN'];
-
-    return daysOfWeek.map(day => (
-      <div key={day}>{day}</div>
-    ));
+  const handleAddButtonClick = () => {
+    setShowSchedule(true);
   };
 
   return (
@@ -47,11 +61,19 @@ const Calendar: React.FC = () => {
           <div></div>
           <div>{getCurrentWeekDates()}</div>
         </Grid>
-
-        <div style={{ marginTop: '1rem', display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)' }}>
-          {renderCalendar()}
-        </div>
       </Center>
+
+      <Stack>
+        <DetailMonth />
+      </Stack>
+
+      <div className="section-container">
+        <Link to="/Schedule">
+          <button >
+            Thêm
+          </button>
+        </Link>
+      </div>
     </Page>
   );
 }
