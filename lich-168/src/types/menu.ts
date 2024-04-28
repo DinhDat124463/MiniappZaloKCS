@@ -5,3 +5,4 @@ export interface MenuItem {
   icon: ReactNode;
   activeIcon?: ReactNode;
 }
+

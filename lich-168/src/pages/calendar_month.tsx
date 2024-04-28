@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Page, Grid, Center, Icon, Stack } from "zmp-ui";
-
-import DetailMonth from "./detail_month"
+import DetailMonth from "./detail_month";
 import { Link } from "react-router-dom";
 
 const Calendar: React.FC = () => {
   const [currentWeek, setCurrentWeek] = useState<number>(1);
-  const [showSchedule, setShowSchedule] = useState<boolean>(false);
+  const currentDate = new Date();
 
   useEffect(() => {
     // Lấy giá trị tuần từ local storage nếu có
@@ -31,8 +30,7 @@ const Calendar: React.FC = () => {
   };
 
   const getCurrentWeekDates = () => {
-    const today = new Date();
-    const currentYear = today.getFullYear();
+    const currentYear = currentDate.getFullYear();
     const startDate = new Date(currentYear, 0, (currentWeek - 1) * 7 + 1);
     const endDate = new Date(currentYear, 0, currentWeek * 7);
     const startDateString = `${startDate.getDate()}/${startDate.getMonth() + 1}/${startDate.getFullYear()}`;
@@ -41,7 +39,7 @@ const Calendar: React.FC = () => {
   };
 
   const handleAddButtonClick = () => {
-    setShowSchedule(true);
+    // Thêm xử lý khi nút Thêm được click
   };
 
   return (
@@ -69,8 +67,8 @@ const Calendar: React.FC = () => {
 
       <div className="section-container">
         <Link to="/Schedule">
-          <button >
-            Thêm
+          <button onClick={handleAddButtonClick}>
+            Đặt lịch hẹn
           </button>
         </Link>
       </div>

@@ -6,7 +6,6 @@ type Option = {
 };
 
 const Schedule: React.FC = () => {
-  const [theme] = useTheme();
   const [sheetVisible, setSheetVisible] = useState(false);
 
   return (
