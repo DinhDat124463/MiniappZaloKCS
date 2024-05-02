@@ -93,7 +93,7 @@ const Calendar: React.FC = () => {
       </Stack>
 
       <div className="section-container">
-        <Link to={`/schedule`}>
+        <Link to={`/Schedule`}>
           <button onClick={handleAddButtonClick}>
             Đặt lịch hẹn
           </button>

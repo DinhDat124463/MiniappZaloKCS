@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { Page, useTheme, Box, Button, Text, Input, Picker } from "zmp-ui";
+import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { Project } from '../types/OOP';
+import { Year } from '../types/OOP';
+import { Day } from '../types/OOP';
+import { MorningData } from '../types/OOP';
+import { AfternoonData } from '../types/OOP';
 
 const Schedule: React.FC = () => {
   const [sheetVisible, setSheetVisible] = useState(false);
   const [currentProject, setCurrentProject] = useState<Project | null>(null); // Khai báo state để lưu dữ liệu từ Project
   const { week } = useParams<{ week: string }>(); // Explicitly specify the type as string
-
+  const [txtTieudeContent, setTxtTieudeContent] = useState("");
   useEffect(() => {
     const project = new Project();
     setCurrentProject(project);
@@ -28,10 +33,30 @@ const Schedule: React.FC = () => {
     return data;
   };
 
+  const ButtonClick = () => {
 
+    const textContent = document.getElementsByName("txt_tieude");
+
+    const morning = new MorningData("morning time", "morning content", "morning detail content");
+    const afternoon = new AfternoonData("afternoon time", "afternoon content", "afternoon detail content");
+
+    const day = new Day();
+    day.morningData.push(morning);
+    day.afternoonData.push(afternoon);
+
+    const year = new Year();
+
+    const project = new Project();
+
+
+    project.years.push(year);
+    console.log("Tuần hiện tại:", morning);
+    console.log("Thời gian ngày tháng hiện tại:", textContent);
+
+  };
   return (
     <Page>
-      <div>Ngày {week}</div>
+      {/* <div>Ngày {week}</div>
       <Box mt={6}>
         <Picker
           label='Từ'
@@ -51,7 +76,7 @@ const Schedule: React.FC = () => {
           ]}
         />
 
-      </Box>
+      </Box> */}
       <div>Thời gian {week}</div>
       <Text name="txt_tieude">Tiêu đề</Text>
       <Input type="text" />
@@ -60,12 +85,14 @@ const Schedule: React.FC = () => {
       <Input.TextArea showCount />
 
       {currentProject && (
-        <Button
-          className="schedule-button"
-          onClick={() => setSheetVisible(false)}
-        >
-          Đặt lịch
-        </Button>
+        <Link to={`/`}>
+          <Button
+            className="schedule-button"
+            onClick={ButtonClick}
+          >
+            Đặt lịch
+          </Button>
+        </Link>
       )}
 
       <Button

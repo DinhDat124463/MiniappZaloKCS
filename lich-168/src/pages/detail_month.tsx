@@ -6,8 +6,8 @@ const Detail: React.FC = () => {
   const [theme] = useTheme();
   const [selectedRow, setSelectedRow] = useState<number | null>(null);
   const [selectedColumn, setSelectedColumn] = useState<number | null>(null);
-  const [data, setData] = useState<string[][]>([]); // Specify the correct type for data
-  const [data2, setData2] = useState<string[][]>([]); // Specify the correct type for data
+  const [data, setData] = useState<string[][]>([]); 
+  const [data2, setData2] = useState<string[][]>([]); 
 
   const renderRow = (rowIndex: number) => {
     return (

@@ -45,3 +45,7 @@
   border: 1px solid #388e3c;
   align-items: top; /* Căn chỉnh nội dung theo chiều dọc */
 }
+.text_calendar {
+  font-size: 8;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
