@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "266949194939",
+    "firebase_url": "https://push-76a97-default-rtdb.firebaseio.com",
+    "project_id": "push-76a97",
+    "storage_bucket": "push-76a97.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:266949194939:android:302cd770794593bb1ca59e",
+        "android_client_info": {
+          "package_name": "com.company.TestFireBase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "266949194939-mmne72hvbhaaoajkahr5o4sr6rnt7rsr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBv4_izRD19YSkDZRWrlA-cWb2kfO6TGCE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "266949194939-mmne72hvbhaaoajkahr5o4sr6rnt7rsr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:266949194939:android:b17f23c589a8f6401ca59e",
+        "android_client_info": {
+          "package_name": "com.company.chatkcs"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "266949194939-mmne72hvbhaaoajkahr5o4sr6rnt7rsr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBv4_izRD19YSkDZRWrlA-cWb2kfO6TGCE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "266949194939-mmne72hvbhaaoajkahr5o4sr6rnt7rsr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:266949194939:android:ebf034ec40dd2a981ca59e",
+        "android_client_info": {
+          "package_name": "com.company.lich168"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "266949194939-mmne72hvbhaaoajkahr5o4sr6rnt7rsr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBv4_izRD19YSkDZRWrlA-cWb2kfO6TGCE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "266949194939-mmne72hvbhaaoajkahr5o4sr6rnt7rsr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
