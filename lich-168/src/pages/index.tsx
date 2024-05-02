@@ -1,36 +1,21 @@
 import React from "react";
-import { List, Page, Icon, useNavigate } from "zmp-ui";
-import { useRecoilValue } from "recoil";
-import { userState } from "../state";
+import { Page, Grid, Button, Center } from "zmp-ui";
 
-import UserCard from "../components/user-card";
-
-const HomePage: React.FunctionComponent = () => {
-  const user = useRecoilValue(userState);
-  const navigate = useNavigate();
+export default function HomePage() {
   return (
-    <Page className="page">
-      <div className="section-container">
-        <UserCard user={user.userInfo} />
-      </div>
-      <div className="section-container">
-        <List>
-          <List.Item
-            onClick={() => navigate("/about")}
-            suffix={<Icon icon="zi-arrow-right" />}
-          >
-            <div>About</div>
-          </List.Item>
-          <List.Item
-            onClick={() => navigate("/user")}
-            suffix={<Icon icon="zi-arrow-right" />}
-          >
-            <div>User</div>
-          </List.Item>
-        </List>
-      </div>
+    <Page className='section-container'>
+      <Center gutters='1rem'>
+        <Grid columnCount={7}>
+          <div
+            style={{
+              border: "solid 2px",
+              width: "20px",
+              height: "20px"
+            }}
+          />
+
+        </Grid>
+      </Center>
     </Page>
   );
-};
-
-export default HomePage;
+}
