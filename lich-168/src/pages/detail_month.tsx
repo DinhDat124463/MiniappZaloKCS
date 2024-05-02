@@ -1,51 +1,54 @@
 import React, { useState } from "react";
-import { useTheme, Box, Text } from "zmp-ui";
+import { useTheme, Text, Page, Grid, Center, Box } from "zmp-ui";
+import { Col, Row, Button } from 'antd';
 
 const Detail: React.FC = () => {
   const [theme] = useTheme();
   const [selectedRow, setSelectedRow] = useState<number | null>(null);
   const [selectedColumn, setSelectedColumn] = useState<number | null>(null);
-  const [data, setData] = useState<string[]>([]);
-  const daysOfWeek = ["Thời gian", "Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7", "CN"];
+  const [data, setData] = useState<string[][]>([]); // Specify the correct type for data
+  const [data2, setData2] = useState<string[][]>([]); // Specify the correct type for data
 
-  const handleCellClick = (row: number, column: number) => {
-    setSelectedRow(row);
-    setSelectedColumn(column);
-  };
-
-  const getDayOfWeek = (column: number) => {
-    // Trả ra thứ mà tương ứng với cột được chọn
-    if (column >= 2 && column <= 8) {
-      return daysOfWeek[column - 1];
-    } else {
-      return "Không hợp lệ"; // Hoặc có thể trả ra một giá trị mặc định khác nếu cột không hợp lệ
-    }
-  };
-
-  const handleAddData = () => {
-    const newData = "Dữ liệu mới"; // Thay "Dữ liệu mới" bằng dữ liệu bạn muốn thêm vào
-    setData([...data, newData]);
+  const renderRow = (rowIndex: number) => {
+    return (
+      <Grid >
+        <Row className="grid_column">
+          <Col className="grid_column" span={3}><Text>Thời gian</Text></Col>
+          <Col className="grid_column" span={3}><Text>T2</Text></Col>
+          <Col className="grid_column" span={3}><Text>T3</Text></Col>
+          <Col className="grid_column" span={3}><Text>T4</Text></Col>
+          <Col className="grid_column" span={3}><Text>T5</Text></Col>
+          <Col className="grid_column" span={3}><Text>T6</Text></Col>
+          <Col className="grid_column" span={3}><Text>T7</Text></Col>
+          <Col className="grid_column" span={3}><Text>CN</Text></Col>
+        </Row>
+        <Row className="grid_column">
+          <Col className="grid_column" span={3}><Text>Sáng</Text></Col>
+          <Col className="grid_column" span={3}><Text>{data[0]}</Text></Col>
+          <Col className="grid_column" span={3}><Text>{data[1]}</Text></Col>
+          <Col className="grid_column" span={3}><Text>{data[2]}</Text></Col>
+          <Col className="grid_column" span={3}><Text>{data[3]}</Text></Col>
+          <Col className="grid_column" span={3}><Text>{data[4]}</Text></Col>
+          <Col className="grid_column" span={3}><Text>{data[5]}</Text></Col>
+          <Col className="grid_column" span={3}><Text>{data[6]}</Text></Col>
+        </Row>
+        <Row className="grid_column">
+          <Col className="grid_column" span={3}><Text>Chiều</Text></Col>
+          <Col className="grid_column" span={3}><Text>{data2[0]}</Text></Col>
+          <Col className="grid_column" span={3}><Text>{data2[1]}</Text></Col>
+          <Col className="grid_column" span={3}><Text>{data2[2]}</Text></Col>
+          <Col className="grid_column" span={3}><Text>{data2[3]}</Text></Col>
+          <Col className="grid_column" span={3}><Text>{data2[4]}</Text></Col>
+          <Col className="grid_column" span={3}><Text>{data2[5]}</Text></Col>
+          <Col className="grid_column" span={3}><Text>{data2[6]}</Text></Col>
+        </Row>
+      </Grid>
+    );
   };
 
   return (
     <div>
-      {/* Button để thêm dữ liệu */}
-      <button onClick={handleAddData}>Thêm dữ liệu</button>
-
-      {/* Lưới */}
-      <div>
-        {/* Hiển thị dữ liệu */}
-        {data.map((item, index) => (
-          <div key={index}>{item}</div>
-        ))}
-      </div>
-
-      {/* Hiển thị thông tin hàng và cột được chọn */}
-      {selectedRow !== null && selectedColumn !== null && (
-        <div>
-          <Text>{getDayOfWeek(selectedColumn)}</Text>
-        </div>
-      )}
+      {renderRow(0)}
     </div>
   );
 };

@@ -39,3 +39,9 @@
   border: 1px solid #ccc;
   border-left: 1px solid #ccc;
 }
+.grid_column {
+  padding: 5px;
+  border-radius: 0px;
+  border: 1px solid #388e3c;
+  align-items: top; /* Căn chỉnh nội dung theo chiều dọc */
+}

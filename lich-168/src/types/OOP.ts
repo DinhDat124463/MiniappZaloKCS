@@ -1,24 +1,26 @@
-class MorningData {
+export class MorningData {
   time: string; // Thời gian
   content: string; // Nội dung
-
-  constructor(time: string, content: string) {
+  detail_content: string; // Chi tiết nội dung
+  constructor(time: string, content: string, detail_content: string) {
     this.time = time;
     this.content = content;
+    this.detail_content = detail_content;
   }
 }
 
-class AfternoonData {
+export class AfternoonData {
   time: string; // Thời gian
   content: string; // Nội dung
-
-  constructor(time: string, content: string) {
+  detail_content: string; // Chi tiết nội dung
+  constructor(time: string, content: string, detail_content: string) {
     this.time = time;
     this.content = content;
+    this.detail_content = detail_content;
   }
 }
 
-class Day {
+export class Day {
   morningData: MorningData[];
   afternoonData: AfternoonData[];
 
@@ -28,7 +30,7 @@ class Day {
   }
 }
 
-class Week {
+export class Year {
   days: Day[];
 
   constructor() {
@@ -36,15 +38,7 @@ class Week {
   }
 }
 
-class Year {
-  weeks: Week[];
-
-  constructor() {
-    this.weeks = [];
-  }
-}
-
-class Project {
+export class Project {
   years: Year[];
 
   constructor() {

@@ -1,3 +1,4 @@
+import { string } from "prop-types";
 import { ReactNode } from "react";
 
 export interface MenuItem {
@@ -6,3 +7,9 @@ export interface MenuItem {
   activeIcon?: ReactNode;
 }
 
+export class Tuan {
+  value: string;
+  constructor(content: string) {
+    this.value = content;
+  }
+}
