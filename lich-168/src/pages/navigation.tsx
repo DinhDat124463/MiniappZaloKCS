@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { BottomNavigation, Icon, Page } from "zmp-ui";
+import { BottomNavigation, Icon, Page, useNavigate } from "zmp-ui";
 
 const BottomNavigationPage = (props) => {
   const [activeTab, setActiveTab] = useState("chat");
   const { title } = props;
-
+  const navigate = useNavigate();
   // Hàm xử lý sự kiện khi nhấp vào mỗi phần tử
   const handleTabClick = (key) => {
     setActiveTab(key); // Cập nhật tab được chọn
@@ -20,16 +20,17 @@ const BottomNavigationPage = (props) => {
         <BottomNavigation.Item
           key="chat"
           label="Trang chủ"
-          icon={<Icon icon="zi-chat" />}
-          activeIcon={<Icon icon="zi-chat-solid" />}
-          onClick={() => handleTabClick("chat")} // Gọi hàm xử lý sự kiện khi nhấp vào phần tử "Trang chủ"
+          icon={<Icon icon="zi-home" />}
+          activeIcon={<Icon icon="zi-home" />}
+          onClick={() => navigate("/")} // Gọi hàm xử lý sự kiện khi nhấp vào phần tử "Trang chủ"
         />
         <BottomNavigation.Item
-          label="Danh bạ"
+          label="Đặt lịch"
           key="contact"
           icon={<Icon icon="zi-call" />}
           activeIcon={<Icon icon="zi-call-solid" />}
-          onClick={() => handleTabClick("contact")} // Gọi hàm xử lý sự kiện khi nhấp vào phần tử "Danh bạ"
+          onClick={() => navigate("/Schedule")}
+        // Gọi hàm xử lý sự kiện khi nhấp vào phần tử "Danh bạ"
         />
         <BottomNavigation.Item
           key="timeline"

@@ -8,8 +8,8 @@ export interface MenuItem {
 }
 
 export class Tuan {
-  value: string;
-  constructor(content: string) {
-    this.value = content;
+  startDate: string[];
+  constructor() {
+    this.startDate = [];
   }
 }

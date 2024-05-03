@@ -2,21 +2,24 @@ import React, { useState, useEffect } from "react";
 import { Page, Grid, Center, Icon, Stack } from "zmp-ui";
 import DetailMonth from "./detail_month";
 import { Link } from "react-router-dom";
-import { Day } from '../types/OOP';
-
-import { Year } from '../types/OOP';
 import { Project } from '../types/OOP';
 import { Tuan } from '../types/menu';
 
-
 const Calendar: React.FC = () => {
   const [currentWeek, setCurrentWeek] = useState<number>(1);
+  const [currentProject, setCurrentProject] = useState<Project | null>(null);
   const currentDate = new Date();
 
   useEffect(() => {
     const savedWeek = localStorage.getItem("lastUsedWeek");
     if (savedWeek) {
       setCurrentWeek(parseInt(savedWeek));
+    }
+
+    const savedProject = localStorage.getItem("project");
+    if (savedProject) {
+      const project = JSON.parse(savedProject);
+      setCurrentProject(project);
     }
   }, []);
 
@@ -50,27 +53,16 @@ const Calendar: React.FC = () => {
 
     // Chuyển đổi ngày kết thúc thành chuỗi có định dạng "DD/MM/YYYY"
     const endDateString = `${endDate.getDate()}/${endDate.getMonth() + 1}/${endDate.getFullYear()}`;
-    new Tuan(startDateString);
+
+    const tuan2 = new Tuan();
+    tuan2.startDate.push(startDateString);
+
+
+    console.log(`a ${tuan2.startDate}`);
+
     // Trả về chuỗi kết quả bao gồm ngày bắt đầu và kết thúc của tuần hiện tại
     return `${startDateString} - ${endDateString}`;
   };
-
-  const handleAddButtonClick = () => {
-    console.log("Tuần hiện tại:", currentWeek);
-    console.log("Thời gian ngày tháng hiện tại:", getCurrentWeekDates());
-
-    const day = new Day();
-
-    const year = new Year();
-
-    const project = new Project();
-    project.years.push(year);
-
-
-    console.log("Tuần hiện tại:", year);
-    console.log("Thời gian ngày tháng hiện tại:", getCurrentWeekDates());
-  };
-
 
   return (
     <Page>
@@ -91,16 +83,28 @@ const Calendar: React.FC = () => {
       <Stack>
         <DetailMonth />
       </Stack>
+      {/* Assuming currentProject.years is an array of Year objects */}
+      {currentProject && (
+        <div className="project-info">
+          <h2>Thông tin dự án:</h2>
 
-      <div className="section-container">
-        <Link to={`/Schedule`}>
-          <button onClick={handleAddButtonClick}>
-            Đặt lịch hẹn
-          </button>
-        </Link>
-      </div>
+          <div>
+            {currentProject.years.map((year, index) => (
+              <div key={index}>
+                {/* <p>Năm: {year.days }</p> */}
+                {/* Render other properties of 'year' */}
+              </div>
+            ))}
+          </div>
+          {/* Render other properties of 'currentProject' */}
+        </div>
+      )}
+
     </Page>
   );
 }
 
 export default Calendar;
+
+
+
