@@ -29,8 +29,15 @@ export class Day {
     this.afternoonData = [];
   }
 }
-
 export class Year {
+  months: Month[];
+
+  constructor() {
+    this.months = [];
+  }
+}
+
+export class Month {
   days: Day[];
 
   constructor() {

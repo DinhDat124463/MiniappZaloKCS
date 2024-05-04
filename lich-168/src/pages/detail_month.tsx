@@ -10,7 +10,7 @@ const Detail: React.FC = () => {
   const [data, setData] = useState<string[][]>([]);
   const [data2, setData2] = useState<string[][]>([]);
 
-  const selectedYear = project?.years?.[0]?.days?.[0]?.morningData?.[2] || '';
+  const selectedYear = project.years[0].months[0].days[0].morningData[0];
 
   const renderRow = (rowIndex: number) => {
     return (
