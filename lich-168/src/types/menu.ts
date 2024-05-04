@@ -8,8 +8,19 @@ export interface MenuItem {
 }
 
 export class Tuan {
-  startDate: string[];
+  private _startDate: string[];
+
   constructor() {
-    this.startDate = [];
+    this._startDate = [];
+  }
+
+  // Getter
+  get startDate(): string[] {
+    return this._startDate;
+  }
+
+  // Setter
+  set startDate(value: string[]) {
+    this._startDate = value;
   }
 }

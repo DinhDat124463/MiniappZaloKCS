@@ -42,7 +42,10 @@ const Schedule: React.FC = () => {
       const project = new Project();
       project.years.push(year);
       console.log(project);
-      console.log(Tuan);
+      const tuanInstance = new Tuan();
+
+      const startDate = tuanInstance.startDate;
+      console.log(startDate);
 
       openSnackbar({
         text: "Thêm thành công",
