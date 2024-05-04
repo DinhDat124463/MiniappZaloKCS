@@ -4,7 +4,7 @@ import DetailMonth from "./detail_month";
 import { Link } from "react-router-dom";
 import { Project } from '../types/OOP';
 import { Tuan } from '../types/menu';
-
+const tuan2 = new Tuan();
 const Calendar: React.FC = () => {
   const [currentWeek, setCurrentWeek] = useState<number>(1);
   const [currentProject, setCurrentProject] = useState<Project | null>(null);
@@ -35,6 +35,7 @@ const Calendar: React.FC = () => {
     localStorage.setItem("lastUsedWeek", newWeek.toString());
   };
 
+
   const getCurrentWeekDates = () => {
     // Lấy năm hiện tại từ đối tượng currentDate
     const currentYear = currentDate.getFullYear();
@@ -54,11 +55,12 @@ const Calendar: React.FC = () => {
     // Chuyển đổi ngày kết thúc thành chuỗi có định dạng "DD/MM/YYYY"
     const endDateString = `${endDate.getDate()}/${endDate.getMonth() + 1}/${endDate.getFullYear()}`;
 
-    const tuan2 = new Tuan();
+    tuan2.startDate = []; // Xóa hết các dữ liệu trước đó
+
+    // Thêm dữ liệu mới vào mảng startDate
     tuan2.startDate.push(startDateString);
 
-
-    console.log(`a ${tuan2.startDate}`);
+    console.log(`${tuan2.startDate}`);
 
     // Trả về chuỗi kết quả bao gồm ngày bắt đầu và kết thúc của tuần hiện tại
     return `${startDateString} - ${endDateString}`;
@@ -102,8 +104,9 @@ const Calendar: React.FC = () => {
 
     </Page>
   );
-}
 
+}
+export { tuan2 };
 export default Calendar;
 
 

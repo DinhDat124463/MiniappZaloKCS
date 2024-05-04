@@ -7,7 +7,11 @@ import { Year } from '../types/OOP';
 import { Day } from '../types/OOP';
 import { MorningData } from '../types/OOP';
 import { AfternoonData } from '../types/OOP';
-import { Tuan } from '../types/menu';
+import { tuan2 } from '../pages/calendar_month';
+
+const project = new Project();
+
+
 const Schedule: React.FC = () => {
   const { openSnackbar } = useSnackbar();
   const [currentProject, setCurrentProject] = useState<Project | null>(null); // Khai báo state để lưu dữ liệu từ Project
@@ -37,15 +41,12 @@ const Schedule: React.FC = () => {
       const day = new Day();
       day.morningData.push(morning);
       day.afternoonData.push(afternoon);
+
       const year = new Year();
       year.days.push(day);
-      const project = new Project();
+
       project.years.push(year);
       console.log(project);
-      const tuanInstance = new Tuan();
-
-      const startDate = tuanInstance.startDate;
-      console.log(startDate);
 
       openSnackbar({
         text: "Thêm thành công",
@@ -63,7 +64,7 @@ const Schedule: React.FC = () => {
 
   return (
     <Page>
-      <div>Thời gian {week}</div>
+      <div>Thời gian {(tuan2.startDate)}</div>
 
       <Text name="txt_tieude">Tiêu đề</Text>
       <Input type="text" value={Tieude} onChange={handleInputChange} />
@@ -79,5 +80,5 @@ const Schedule: React.FC = () => {
     </Page>
   );
 };
-
+export { project };
 export default Schedule;

@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import { useTheme, Text, Page, Grid, Center, Box } from "zmp-ui";
 import { Col, Row, Button } from 'antd';
-
+import { project } from '../pages/add_Schedule';
+import { tuan2 } from '../pages/calendar_month';
 const Detail: React.FC = () => {
   const [theme] = useTheme();
   const [selectedRow, setSelectedRow] = useState<number | null>(null);
   const [selectedColumn, setSelectedColumn] = useState<number | null>(null);
-  const [data, setData] = useState<string[][]>([]); 
-  const [data2, setData2] = useState<string[][]>([]); 
+  const [data, setData] = useState<string[][]>([]);
+  const [data2, setData2] = useState<string[][]>([]);
+
+  const selectedYear = project?.years?.[0]?.days?.[0]?.morningData?.[2] || '';
 
   const renderRow = (rowIndex: number) => {
     return (
@@ -24,7 +27,7 @@ const Detail: React.FC = () => {
         </Row>
         <Row className="grid_column">
           <Col className="grid_column" span={3}><Text>Sáng</Text></Col>
-          <Col className="grid_column" span={3}><Text>{data[0]}</Text></Col>
+          <Col className="grid_column" span={3}><Text>{tuan2.startDate}</Text></Col>
           <Col className="grid_column" span={3}><Text>{data[1]}</Text></Col>
           <Col className="grid_column" span={3}><Text>{data[2]}</Text></Col>
           <Col className="grid_column" span={3}><Text>{data[3]}</Text></Col>
@@ -37,7 +40,7 @@ const Detail: React.FC = () => {
           <Col className="grid_column" span={3}><Text>{data2[0]}</Text></Col>
           <Col className="grid_column" span={3}><Text>{data2[1]}</Text></Col>
           <Col className="grid_column" span={3}><Text>{data2[2]}</Text></Col>
-          <Col className="grid_column" span={3}><Text>{data2[3]}</Text></Col>
+          <Col className="grid_column" span={3}><Text>{selectedYear.content}</Text></Col>
           <Col className="grid_column" span={3}><Text>{data2[4]}</Text></Col>
           <Col className="grid_column" span={3}><Text>{data2[5]}</Text></Col>
           <Col className="grid_column" span={3}><Text>{data2[6]}</Text></Col>
