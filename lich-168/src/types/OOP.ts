@@ -23,27 +23,34 @@ export class AfternoonData {
 export class Day {
   morningData: MorningData[];
   afternoonData: AfternoonData[];
-
-  constructor() {
+  day: number
+  constructor(day: number) {
     this.morningData = [];
     this.afternoonData = [];
-  }
-}
-export class Year {
-  months: Month[];
-
-  constructor() {
-    this.months = [];
+    this.day = day;
   }
 }
 
 export class Month {
   days: Day[];
-
-  constructor() {
+  month: number
+  constructor(month: number) {
     this.days = [];
+    this.month = month;
   }
 }
+
+export class Year {
+  months: Month[];
+  year: number;
+
+  constructor(year: number) {
+    this.months = [];
+    this.year = year;
+  }
+}
+
+
 
 export class Project {
   years: Year[];

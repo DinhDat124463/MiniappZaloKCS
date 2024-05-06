@@ -22,12 +22,13 @@ const Schedule: React.FC = () => {
     setCurrentProject(project);
   }, []);
 
-  // Hàm tách chuỗi ngày tháng năm
   const tachChuoiNgayThangNam = (dateString: string) => {
     const parts = dateString.split('/');
-    const ngay = parts[0];
-    const thang = parts[1];
-    const nam = parts[2];
+    // Parse ngày, tháng, năm từ chuỗi và chuyển đổi sang kiểu số
+    const ngay = parseInt(parts[0], 10);
+    const thang = parseInt(parts[1], 10);
+    const nam = parseInt(parts[2], 10);
+    // Trả về kết quả
     return { ngay, thang, nam };
   };
 
@@ -47,36 +48,40 @@ const Schedule: React.FC = () => {
     if (Tieude !== "" && Noidungchitiet !== "") {
       const morning = new MorningData("morning time", Tieude, Noidungchitiet);
       const afternoon = new AfternoonData("afternoon time", "afternoon content", "afternoon detail content");
-
-      // Tách chuỗi ngày tháng năm
-      const { ngay, thang, nam } = tachChuoiNgayThangNam(tuan2.startDate);
-
-      // Tạo một Day mới và thêm dữ liệu buổi sáng và buổi chiều vào
-      const day = new Day();
+      const day = new Day(ngayThangNam.ngay);
       day.morningData.push(morning);
       day.afternoonData.push(afternoon);
-
-      // Tạo một Month mới và thêm Day vào
-      const month = new Month();
+      const month = new Month(ngayThangNam.thang);
       month.days.push(day);
-
-      // Tạo một Year mới và thêm Month vào
-      const year = new Year();
-      year.months.push(month);
-
-      // Kiểm tra xem `project.years` đã có phần tử nào chưa
-      if (!project.years.length) {
-        // Nếu chưa có, thêm `year` vào `project.years`
-        project.years.push(year);
-      } else {
-        // Nếu đã có, tìm `year` có cùng `nam` và thêm `month` vào đó
-        let existingYear = project.years.find(y => y.nam === nam);
-        if (!existingYear) {
-          existingYear = new Year();
-          existingYear.nam = nam;
-          project.years.push(existingYear);
+      let yearExists = false;
+      for (const existingYear of project.years) {
+        if (existingYear.year === ngayThangNam.nam) {
+          // Nếu năm đã tồn tại, kiểm tra xem có tháng nào trùng với tháng mới hay không
+          let monthExists = false;
+          for (const existingMonth of existingYear.months) {
+            if (existingMonth.month === ngayThangNam.thang) {
+              // Nếu tháng đã tồn tại, thêm dữ liệu mới vào tháng đó
+              //existingMonth.month.push(ngayThangNam.ngay);
+              monthExists = true;
+              break;
+            }
+          }
+          // Nếu tháng mới không trùng với bất kỳ tháng nào trong năm, tạo tháng mới và thêm dữ liệu vào đó
+          if (!monthExists) {
+            const month = new Month(ngayThangNam.thang);
+            existingYear.months.push(month);
+          }
+          yearExists = true;
+          break;
         }
-        existingYear.months.push(month);
+      }
+
+      // Nếu năm mới không trùng với bất kỳ năm nào trong project.years, tạo năm mới và thêm tháng vào đó
+      if (!yearExists) {
+        const year = new Year(ngayThangNam.nam);
+        const month = new Month(ngayThangNam.thang);
+        year.months.push(month);
+        project.years.push(year);
       }
 
       console.log(project);
@@ -92,8 +97,6 @@ const Schedule: React.FC = () => {
       });
     }
   };
-
-
 
   return (
     <Page>
