@@ -6,7 +6,8 @@ import HomePage from '../pages';
 import About from '../pages/about';
 import Form from '../pages/form';
 import User from '../pages/user';
-import Notification from '../pages/Notification';
+// import Notification from '../pages/Notification';
+// import CapQuyen from '../pages/authorize';
 
 
 const MyApp = () => {
@@ -20,7 +21,8 @@ const MyApp = () => {
               <Route path="/about" element={<About></About>}></Route>
               <Route path="/form" element={<Form></Form>}></Route>
               <Route path="/user" element={<User></User>}></Route>
-              <Route path="/notification" element={<Notification></Notification>}></Route>
+              {/* <Route path="/notification" element={<Notification></Notification>}></Route> */}
+              {/* <Route path="/CapQuyen" element={<CapQuyen></CapQuyen>}></Route> */}
 
             </AnimationRoutes>
           </ZMPRouter>
