@@ -27,6 +27,20 @@ const HomePage: React.FunctionComponent = () => {
           >
             <div>User</div>
           </List.Item>
+
+          <List.Item
+            onClick={() => navigate("/Notification")}
+            suffix={<Icon icon="zi-arrow-right" />}
+          >
+            <div>Gửi thông báo tới người dùng</div>
+          </List.Item>
+
+          <List.Item
+            onClick={() => navigate("/UserID")}
+            suffix={<Icon icon="zi-arrow-right" />}
+          >
+            <div>Lấy id người dùng</div>
+          </List.Item>
         </List>
       </div>
     </Page>
