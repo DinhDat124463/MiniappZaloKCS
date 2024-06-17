@@ -1,30 +1,30 @@
-// import React, { useState } from 'react';
-// import { authorize } from 'zmp-sdk/apis';
+import React, { useState, useEffect } from 'react';
+import { authorize } from 'zmp-sdk/apis';
 
-// const CapQuyen: React.FC = () => {
-//   const [authorizationData, setAuthorizationData] = useState<any>(null); // State to hold authorization data
+const CapQuyen: React.FC = () => {
+  const [authorizationData, setAuthorizationData] = useState<any>(null);
 
-//   const authorize2 = async () => {
-//     try {
-//       const data = await authorize({
-//         scopes: ["scope.userLocation", "scope.userPhonenumber"],
-//       });
-//       setAuthorizationData(data); // Set authorization data to state
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await authorize({
+          scopes: ["scope.userPhonenumber"],
+        });
+        setAuthorizationData(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
-//     } catch (error) {
-//       // Handle API call failure
-//       console.log(error);
-//     }
-//   };
+    fetchData(); // Gọi hàm fetchData khi component được mount lần đầu tiên
+  }, []); // Truyền mảng rỗng để đảm bảo useEffect chỉ chạy một lần
 
-//   return (
+  // Console.log trong useEffect để theo dõi sự thay đổi của authorizationData
+  useEffect(() => {
+    console.log(authorizationData);
+  }, [authorizationData]);
 
-//     <div>
-//       <h2>Authorization Data:</h2>
-//       <pre>{JSON.stringify(authorizationData, null, 2)}</pre>
+  return null;
+};
 
-//     </div>
-//   );
-// };
-
-// export default CapQuyen;
+export default CapQuyen;

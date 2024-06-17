@@ -7,7 +7,11 @@ import About from '../pages/about';
 import Form from '../pages/form';
 import User from '../pages/user';
 // import Notification from '../pages/Notification';
-// import CapQuyen from '../pages/authorize';
+import CapQuyen from '../pages/authorize';
+import PhoneNumberComponent from '../pages/numberPhone';
+import Option_user from '../pages/Option';
+import FollowOAa from '../pages/followOA';
+
 
 
 const MyApp = () => {
@@ -22,7 +26,11 @@ const MyApp = () => {
               <Route path="/form" element={<Form></Form>}></Route>
               <Route path="/user" element={<User></User>}></Route>
               {/* <Route path="/notification" element={<Notification></Notification>}></Route> */}
-              {/* <Route path="/CapQuyen" element={<CapQuyen></CapQuyen>}></Route> */}
+              <Route path="/CapQuyen" element={<CapQuyen></CapQuyen>}></Route>
+              <Route path="/PhoneNumberComponent" element={<PhoneNumberComponent></PhoneNumberComponent>}></Route>
+              <Route path="/Option_user" element={<Option_user></Option_user>}></Route>
+              <Route path="/fl" element={<FollowOAa></FollowOAa>}></Route>
+
 
             </AnimationRoutes>
           </ZMPRouter>

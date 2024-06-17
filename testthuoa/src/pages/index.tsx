@@ -16,10 +16,10 @@ const HomePage: React.FunctionComponent = () => {
       <div className="section-container">
         <List>
           <List.Item
-            onClick={() => navigate("/about")}
+            onClick={() => navigate("/follow")}
             suffix={<Icon icon="zi-arrow-right" />}
           >
-            <div>About</div>
+            <div>FollowOA</div>
           </List.Item>
           <List.Item
             onClick={() => navigate("/user")}
@@ -27,6 +27,26 @@ const HomePage: React.FunctionComponent = () => {
           >
             <div>User</div>
           </List.Item>
+          <List.Item
+            onClick={() => navigate("/CapQuyen")}
+            suffix={<Icon icon="zi-arrow-right" />}
+          >
+            <div>Cấp quyền</div>
+          </List.Item>
+          <List.Item
+            onClick={() => navigate("/PhoneNumberComponent")}
+            suffix={<Icon icon="zi-arrow-right" />}
+          >
+            <div>SDT</div>
+          </List.Item>
+
+          <List.Item
+            onClick={() => navigate("/Option_user")}
+            suffix={<Icon icon="zi-arrow-right" />}
+          >
+            <div>Option</div>
+          </List.Item>
+
         </List>
       </div>
     </Page>

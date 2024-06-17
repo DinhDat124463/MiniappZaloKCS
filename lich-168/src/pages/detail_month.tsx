@@ -14,7 +14,6 @@ const Detail: React.FC = () => {
     return (
       <Grid >
         <Row className="grid_column">
-          <Col className="grid_column" span={3}><Text>Thời gian</Text></Col>
           <Col className="grid_column" span={3}><Text>T2</Text></Col>
           <Col className="grid_column" span={3}><Text>T3</Text></Col>
           <Col className="grid_column" span={3}><Text>T4</Text></Col>
@@ -24,7 +23,6 @@ const Detail: React.FC = () => {
           <Col className="grid_column" span={3}><Text>CN</Text></Col>
         </Row>
         <Row className="grid_column">
-          <Col className="grid_column" span={3}><Text>Sáng</Text></Col>
           <Col className="grid_column" span={3}><Text>{tuan2.startDate}</Text></Col>
           <Col className="grid_column" span={3}><Text>{data[1]}</Text></Col>
           <Col className="grid_column" span={3}><Text>{data[2]}</Text></Col>
@@ -34,7 +32,6 @@ const Detail: React.FC = () => {
           <Col className="grid_column" span={3}><Text>{data[6]}</Text></Col>
         </Row>
         <Row className="grid_column">
-          <Col className="grid_column" span={3}><Text>Chiều</Text></Col>
           <Col className="grid_column" span={3}><Text>{data2[0]}</Text></Col>
           <Col className="grid_column" span={3}><Text>{data2[1]}</Text></Col>
           <Col className="grid_column" span={3}><Text>{data2[2]}</Text></Col>
