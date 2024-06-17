@@ -43,11 +43,16 @@
   word-wrap: break-word;
   white-space: normal;
   border-radius: 4px;
-  border: 1px solid #388e3c;
   justify-content: center;
-  margin: 0 2.5px 5px 0; /* Adjust margin to create space between columns */
+  margin: 0 2.5px 5px 0;
 }
-
+.grid_column_row {
+  word-wrap: break-word;
+  margin: 0 2.5px 5px 0;
+  justify-content: center;
+  border-radius: 4px;
+  border: 1px solid #388e3c;
+}
 .grid_header {
   background-color: #e0f2f1; /* Light green background for headers */
   font-weight: bold; /* Bold text for headers */
