@@ -85,20 +85,17 @@ const Calendar: React.FC = () => {
       <Stack>
         <DetailMonth />
       </Stack>
-      {/* Assuming currentProject.years is an array of Year objects */}
+
       {currentProject && (
         <div className="project-info">
           <h2>Thông tin dự án:</h2>
-
           <div>
             {currentProject.years.map((year, index) => (
               <div key={index}>
-                {/* <p>Năm: {year.days }</p> */}
-                {/* Render other properties of 'year' */}
               </div>
             ))}
           </div>
-          {/* Render other properties of 'currentProject' */}
+
         </div>
       )}
 

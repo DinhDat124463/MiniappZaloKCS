@@ -8,10 +8,10 @@ export interface DaySchedule {
 export const getFakeData = (): DaySchedule[] => {
   return [
     { morning: ["09:00-11:00"], afternoon: ["13:00-15:00"] }, // Thứ 2
-    { morning: ["09:00-11:30"], afternoon: ["13:00-15:30"] }, // Thứ 3
-    { morning: ["07:25-11:10"], afternoon: ["14:00-16:00"] }, // Thứ 4
-    { morning: ["06:00-11:10"], afternoon: ["14:00-16:00"] }, // Thứ 5
-    { morning: ["10:30-11:10"], afternoon: ["14:00-16:00"] }, // Thứ 6
+    { morning: ["09:00-11:30"], afternoon: ["15:00-15:30"] }, // Thứ 3
+    { morning: ["07:25-11:10"], afternoon: ["16:00-16:00"] }, // Thứ 4
+    { morning: ["05:30-11:10"], afternoon: ["14:00-16:00"] }, // Thứ 5
+    { morning: ["10:30-12:10"], afternoon: ["14:00-16:00"] }, // Thứ 6
     { morning: ["10:50-11:10"], afternoon: ["14:00-16:00"] }, // Thứ 7
     { morning: ["10:45-11:10"], afternoon: ["14:00-16:00"] }  // Chủ nhật
   ];
@@ -23,7 +23,6 @@ const getTimeInDecimal = (time: string): number => {
   return hours + minutes / 60; // Trả về số thập phân đại diện cho thời gian từ 00:00
 };
 
-// Hàm getEarliestAndLatestTimes nhận vào một mảng các đối tượng DaySchedule và trả về thời gian sớm nhất và muộn nhất dưới dạng số thập phân
 const getEarliestAndLatestTimes = (weekData: DaySchedule[]): { earliest: number, latest: number } => {
   let earliestTime = 23.99; // Khởi tạo thời gian sớm nhất với 23 giờ 59 phút trong dạng số thập phân
   let latestTime = 0.0;     // Khởi tạo thời gian muộn nhất với 0 giờ 00 phút trong dạng số thập phân
@@ -37,7 +36,6 @@ const getEarliestAndLatestTimes = (weekData: DaySchedule[]): { earliest: number,
       // Chuyển đổi thời gian bắt đầu và kết thúc sang số thập phân
       const startDecimal = getTimeInDecimal(startTime);
       const endDecimal = getTimeInDecimal(endTime);
-
       // So sánh và cập nhật thời gian sớm nhất và muộn nhất nếu cần thiết
       if (startDecimal < earliestTime) {
         earliestTime = startDecimal;
@@ -65,12 +63,45 @@ console.log(`Thời gian muộn nhất: ${latest.toFixed(2)}`);
 export interface Scale {
   scale: number; // Giá trị tỉ lệ
 }
-
 // Hàm getScale tính toán và trả về tỉ lệ dựa trên khoảng thời gian từ thời gian sớm nhất đến thời gian muộn nhất
 export const getScale = (): Scale => {
   const scaleValue = (latest - earliest) / 24; // Tính tỉ lệ như là phần trăm của 24 giờ
   return { scale: scaleValue };
 };
 
-// In ra màn hình giá trị tỉ lệ
+// Hàm getEarliestTime để lấy thời gian sớm nhất của buổi sáng và buổi chiều từ dữ liệu lịch làm việc trong tuần
+export const getEarliestTime = (): { morningEarliest: number, afternoonEarliest: number } => {
+  const weekData = getFakeData(); // Lấy dữ liệu giả lập từ hàm getFakeData
+  let morningEarliest = Infinity; // Khởi tạo với giá trị vô cực để tìm giá trị nhỏ nhất
+  let afternoonEarliest = Infinity; // Khởi tạo với giá trị vô cực để tìm giá trị nhỏ nhất
+
+  // Duyệt qua từng ngày trong tuần
+  weekData.forEach(day => {
+    // Duyệt qua từng khoảng thời gian sáng của ngày hiện tại
+    day.morning.forEach(timeRange => {
+      const startTime = timeRange.split('-')[0];
+      const startDecimal = getTimeInDecimal(startTime);
+      if (startDecimal < morningEarliest) {
+        morningEarliest = startDecimal;
+      }
+    });
+
+    // Duyệt qua từng khoảng thời gian chiều của ngày hiện tại
+    day.afternoon.forEach(timeRange => {
+      const startTime = timeRange.split('-')[0];
+      const startDecimal = getTimeInDecimal(startTime);
+      if (startDecimal < afternoonEarliest) {
+        afternoonEarliest = startDecimal;
+      }
+    });
+  });
+
+  // Trả về đối tượng chứa thời gian sớm nhất của buổi sáng và buổi chiều
+  return { morningEarliest, afternoonEarliest };
+};
+// Sử dụng hàm getEarliestTime để lấy thời gian sớm nhất của buổi sáng và buổi chiều
+const { morningEarliest, afternoonEarliest } = getEarliestTime();
+
+console.log(`Thời gian sớm nhất của buổi sáng: ${morningEarliest.toFixed(2)}`);
+console.log(`Thời gian sớm nhất của buổi chiều: ${afternoonEarliest.toFixed(2)}`);
 console.log(getScale());

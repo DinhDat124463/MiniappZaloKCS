@@ -3,82 +3,128 @@ import { useTheme, Text, Grid } from "zmp-ui";
 import { Col, Row } from 'antd';
 import { getFakeData, DaySchedule } from './data'; // Import hàm và kiểu dữ liệu từ tệp fakeData.ts
 import { getScale } from './data';
+import { getEarliestTime } from './data';
+
 import moment from 'moment';
 
 const scaleValue = getScale().scale;
+const morningEarliest = getEarliestTime().morningEarliest;
+const afternoonEarliest = getEarliestTime().afternoonEarliest;
 
+const getTimeInDecimal = (time: string): number => {
+  const [hours, minutes] = time.split(':').map(Number); // Tách giờ và phút, chuyển đổi sang số
+  return hours + minutes / 60; // Trả về số thập phân đại diện cho thời gian từ 00:00
+};
 const Detail: React.FC = () => {
-  const [theme] = useTheme();
   const [data, setData] = useState<DaySchedule[][]>([]);
-  const [scale, setScale] = useState<number>(4); // State để lưu trữ tỷ lệ, mặc định là 1
-  const rowHeight = 30;
   useEffect(() => {
     const weeks = [getFakeData()];
-    setData(weeks); // Cập nhật dữ liệu vào state với 3 tuần
+    setData(weeks);
   }, []);
-
   const renderWeek = (weekData: DaySchedule[], weekIndex: number) => {
     return (
       <div key={weekIndex}>
         <Grid>
           <Row className="grid_column grid_header">
-            <Col className="grid_column" span={3}><Text>T2</Text></Col>
-            <Col className="grid_column" span={3}><Text>T3</Text></Col>
-            <Col className="grid_column" span={3}><Text>T4</Text></Col>
-            <Col className="grid_column" span={3}><Text>T5</Text></Col>
-            <Col className="grid_column" span={3}><Text>T6</Text></Col>
-            <Col className="grid_column" span={3}><Text>T7</Text></Col>
-            <Col className="grid_column" span={3}><Text>CN</Text></Col>
+            <Col className="grid_column " span={3}><div className="text_clm" >T2</div></Col>
+            <Col className="grid_column text_clm" span={3}><div className="text_clm" >T3</div></Col>
+            <Col className="grid_column text_clm" span={3}><div className="text_clm" >T4</div></Col>
+            <Col className="grid_column text_clm" span={3}><div className="text_clm" >T5</div></Col>
+            <Col className="grid_column text_clm" span={3}><div className="text_clm" >T6</div></Col>
+            <Col className="grid_column text_clm" span={3}><div className="text_clm" >T7</div></Col>
+            <Col className="grid_column texttd" span={3}><div className="text_clm" >CN</div></Col>
           </Row>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
           <Row className="grid_column_row">
             {weekData.map((dayData, dayIndex) => (
               <Col key={dayIndex} className="grid_column" span={3}>
-                <Row className="grid_column_row" style={{ height: rowHeight * scaleValue }}>
 
-                  {dayData.morning.map((event, eventIndex) => {
-                    // Tách chuỗi event thành giờ bắt đầu và kết thúc
-                    const [startTimeStr, endTimeStr] = event.split('-').map(time => time.trim());
+                {dayData.morning.map((event, eventIndex) => {
+                  // Tách chuỗi event thành giờ bắt đầu và kết thúc
+                  const [startTimeStr, endTimeStr] = event.split('-').map(time => time.trim());
 
-                    // Chuyển đổi thành đối tượng moment
-                    const startTime = moment(startTimeStr, 'HH:mm');
-                    const endTime = moment(endTimeStr, 'HH:mm');
+                  // Chuyển đổi thành đối tượng moment
+                  const startTime = moment(startTimeStr, 'HH:mm');
+                  const endTime = moment(endTimeStr, 'HH:mm');
 
-                    // Tính toán khoảng thời gian giữa startTime và endTime
-                    const duration = moment.duration(endTime.diff(startTime));
-                    const totalMinutes = duration.asMinutes(); // tổng số phút
-                    const totalHoursDecimal = totalMinutes / 60; // số giờ dưới dạng thập phân
+                  // Tính toán khoảng thời gian giữa startTime và endTime
+                  const duration = moment.duration(endTime.diff(startTime));
+                  const totalMinutes = duration.asMinutes(); // tổng số phút
+                  const totalHoursDecimal = totalMinutes / 60; // số giờ dưới dạng thập phân
+                  const startDecimal = getTimeInDecimal(startTimeStr);
 
-                    console.log(`Khoảng thời gian là: ${totalHoursDecimal} giờ`);
-                    return (
-                      <div key={eventIndex} className="event">
+                  // Tính chênh lệch thời gian
+                  const timeDifference = startDecimal - morningEarliest;
+                  console.log(`Cheenh thời gian là: ${timeDifference.toFixed(2)}`);
+                  console.log(`Khoảng thời gian là: ${totalHoursDecimal.toFixed(2)} giờ`);
+                  return (
+                    <div key={eventIndex} className="event">
+                      <Row style={{ height: 10 + scaleValue * timeDifference * 20 }}>
+                      </Row>
+                      <Row className="grid_column_row" style={{ height: 50 + 20 * scaleValue * totalHoursDecimal }}>
                         <Text className="text">{startTimeStr}</Text>
                         <Text className="text">{endTimeStr}</Text>
-                      </div>
-                    );
-                  })}
-                </Row>
+                      </Row>
+                    </div>
+                  );
+                })}
               </Col>
             ))}
           </Row>
 
-
-
           <Row className="grid_column_row">
             {weekData.map((dayData, dayIndex) => (
               <Col key={dayIndex} className="grid_column" span={3}>
-                <Row className="grid_column_row" style={{ height: rowHeight * scaleValue }}>
-                  {dayData.afternoon.map((event: string, eventIndex: number) => {
-                    // Tách chuỗi event thành giờ bắt đầu và kết thúc
-                    const [startTime, endTime] = event.split('-');
-                    return (
-                      <div key={eventIndex} className="event">
-                        <Text className="text">{startTime.trim()}</Text>
-                        <Text className="text">{endTime.trim()}</Text>
-                      </div>
-                    );
-                  })}
-                </Row>
+
+                {dayData.afternoon.map((event, eventIndex) => {
+                  // Tách chuỗi event thành giờ bắt đầu và kết thúc
+                  const [startTimeStr, endTimeStr] = event.split('-').map(time => time.trim());
+
+                  // Chuyển đổi thành đối tượng moment
+                  const startTime = moment(startTimeStr, 'HH:mm');
+                  const endTime = moment(endTimeStr, 'HH:mm');
+
+                  // Tính toán khoảng thời gian giữa startTime và endTime
+                  const duration = moment.duration(endTime.diff(startTime));
+                  const totalMinutes = duration.asMinutes(); // tổng số phút
+                  const totalHoursDecimal = totalMinutes / 60; // số giờ dưới dạng thập phân
+                  const startDecimal = getTimeInDecimal(startTimeStr);
+
+                  // Tính chênh lệch thời gian
+                  const timeDifference = startDecimal - afternoonEarliest;
+                  console.log(`Cheenh thời gian là: ${timeDifference.toFixed(2)}`);
+                  console.log(`Khoảng thời gian là: ${totalHoursDecimal.toFixed(2)} giờ`);
+                  return (
+                    <div key={eventIndex} className="event">
+                      <Row style={{ height: 10 + scaleValue * timeDifference * 20 }}>
+                      </Row>
+                      <Row className="grid_column_row" style={{ height: 50 + 20 * scaleValue * totalHoursDecimal }}>
+                        <Text className="text">{startTimeStr}</Text>
+                        <Text className="text">{endTimeStr}</Text>
+                      </Row>
+                    </div>
+                  );
+                })}
               </Col>
             ))}
           </Row>

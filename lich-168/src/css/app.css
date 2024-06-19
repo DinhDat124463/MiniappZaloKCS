@@ -8,7 +8,14 @@
   border-radius: 8px;
   margin-bottom: 24px;
 }
+.text_clm {
+  font-weight: bold; /* Để làm chữ in đậm */
+  align-items: center; /* Để căn giữa nội dung */
+}
 
+.texttd {
+  color: red;
+}
 .zaui-list-item {
   cursor: pointer;
 }
